@@ -29,7 +29,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: mobilerun-portal-pr-${{ github.event.pull_request.number }}
+          name: carrun-portal-pr-${{ github.event.pull_request.number }}
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 30
 

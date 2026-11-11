@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mobilerun.portal"
+    namespace = "com.carrun.portal"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mobilerun.portal"
+        applicationId = "com.carrun.portal"
         minSdk = 29
         targetSdk = 34
         versionCode = (project.findProperty("versionCode") as String).toInt()
@@ -19,7 +19,7 @@ android {
 
         val updateFeedUrl =
             (project.findProperty("updateFeedUrl") as String?)
-                ?: "https://github.com/droidrun/mobilerun-portal/releases/latest/download/latest.json"
+                ?: "https://github.com/tonywang78/carrun/releases/latest/download/latest.json"
         buildConfigField(
             "String",
             "UPDATE_FEED_URL",

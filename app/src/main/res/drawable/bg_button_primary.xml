@@ -5,14 +5,14 @@
         linear-gradient(to bottom,
             hsl(0 0% 100% / 0.1),
             hsl(0 0% 0% / 0.04))
-    Layer 1: solid primary color (DayNight-aware via @color/mobilerun_primary).
+    Layer 1: solid primary color (DayNight-aware via @color/carrun_primary).
     Layer 2: subtle white to black vertical gradient overlay.
-    Corner radius 18dp ties to ShapeAppearance.Mobilerun.Medium - keep in sync if that changes.
+    Corner radius 18dp ties to ShapeAppearance.Carrun.Medium - keep in sync if that changes.
 -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/mobilerun_primary" />
+            <solid android:color="@color/carrun_primary" />
             <corners android:radius="18dp" />
         </shape>
     </item>

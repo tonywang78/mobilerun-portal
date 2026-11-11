@@ -300,7 +300,7 @@
 
                         </LinearLayout>
 
-                        <com.mobilerun.portal.ui.taskprompt.SparklineView
+                        <com.carrun.portal.ui.taskprompt.SparklineView
                             android:id="@+id/dashboard_sparkline"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -385,7 +385,7 @@
 
                             </LinearLayout>
 
-                            <com.mobilerun.portal.ui.taskprompt.SuccessRingView
+                            <com.carrun.portal.ui.taskprompt.SuccessRingView
                                 android:id="@+id/dashboard_success_ring"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
@@ -510,7 +510,7 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/retry"
                 android:textAllCaps="false"
-                app:backgroundTint="@color/mobilerun_primary" />
+                app:backgroundTint="@color/carrun_primary" />
 
         </LinearLayout>
 
@@ -608,7 +608,7 @@
                         android:text="@string/retry"
                         android:textAllCaps="false"
                         android:visibility="gone"
-                        app:backgroundTint="@color/mobilerun_primary" />
+                        app:backgroundTint="@color/carrun_primary" />
 
                 </LinearLayout>
 

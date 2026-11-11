@@ -6,11 +6,11 @@ Use focused logcat filters when a row fails.
 
 | Area | Tags |
 | --- | --- |
-| Core state | `ApiHandler`, `MobilerunAccessibility`, `MobilerunContentProvider`, `PortalService` |
+| Core state | `ApiHandler`, `CarrunAccessibility`, `CarrunContentProvider`, `PortalService` |
 | Local and reverse transport | `SocketServer`, `PortalWSServer`, `ReverseConnService`, `LocalDeviceEventRelay`, `EventHub` |
 | Screenshot and MediaProjection | `ScreenCaptureActivity`, `ScreenCaptureService`, `MediaProjectionAutoAccept`, `MediaProjScreenshot`, `AutoAcceptGate` |
 | Streaming | `WebRtcManager`, `ScreenCaptureService`, `ReverseConnService` |
-| Triggers and notifications | `TriggerRuntime`, `TriggerApi`, `TriggerAlarmReceiver`, `TriggerSmsReceiver`, `MobilerunNotificationListener`, `EventHub` |
+| Triggers and notifications | `TriggerRuntime`, `TriggerApi`, `TriggerAlarmReceiver`, `TriggerSmsReceiver`, `CarrunNotificationListener`, `EventHub` |
 | Tasks and cloud | `TaskPrompt`, `PortalCloudClient`, `TaskPromptNotificationActionReceiver` |
 | Files, input, updates | `GestureController`, `FileOperations`, `PackageInstallerAutoAccept`, `KeepAliveService`, `UpdateInstallReceiver` |
 

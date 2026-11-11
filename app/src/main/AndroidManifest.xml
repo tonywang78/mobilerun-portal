@@ -70,13 +70,13 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mobilerun"
+        android:theme="@style/Theme.Carrun"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
 
         <service
-            android:name=".service.MobilerunAccessibilityService"
+            android:name=".service.CarrunAccessibilityService"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
@@ -89,7 +89,7 @@
         </service>
 
         <service
-            android:name=".service.MobilerunNotificationListener"
+            android:name=".service.CarrunNotificationListener"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
             android:exported="true">
@@ -149,7 +149,7 @@
             android:exported="false" />
 
         <provider
-            android:name=".service.MobilerunContentProvider"
+            android:name=".service.CarrunContentProvider"
             android:authorities="${applicationId}"
             android:enabled="true"
             android:exported="true"></provider>
@@ -219,7 +219,7 @@
             android:exported="false" />
 
         <service
-            android:name=".input.MobilerunKeyboardIME"
+            android:name=".input.CarrunKeyboardIME"
             android:label="@string/keyboard_name"
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:exported="true">
@@ -233,27 +233,27 @@
 
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:theme="@style/Theme.Mobilerun"
+            android:theme="@style/Theme.Carrun"
             android:exported="false" />
 
         <activity
             android:name=".ui.triggers.TriggerRulesActivity"
-            android:theme="@style/Theme.Mobilerun"
+            android:theme="@style/Theme.Carrun"
             android:exported="false" />
 
         <activity
             android:name=".ui.triggers.TriggerRuleEditorActivity"
-            android:theme="@style/Theme.Mobilerun"
+            android:theme="@style/Theme.Carrun"
             android:exported="false" />
 
         <activity
             android:name=".ui.taskprompt.TaskHistoryActivity"
-            android:theme="@style/Theme.Mobilerun"
+            android:theme="@style/Theme.Carrun"
             android:exported="false" />
 
         <activity
             android:name=".ui.taskprompt.TaskDetailsActivity"
-            android:theme="@style/Theme.Mobilerun"
+            android:theme="@style/Theme.Carrun"
             android:exported="false" />
 
         <activity

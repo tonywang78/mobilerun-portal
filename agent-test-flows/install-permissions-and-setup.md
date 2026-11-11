@@ -16,14 +16,14 @@ Record:
 
 - Use update install when credentials need to stay in place.
 - Use clean install only for baseline comparison or clean onboarding checks.
-- Launch `com.mobilerun.portal/.ui.MainActivity` after install.
+- Launch `com.carrun.portal/.ui.MainActivity` after install.
 
 ## Enable Services
 
 Enable or verify:
 
-- Accessibility service: `com.mobilerun.portal/.service.MobilerunAccessibilityService`.
-- Notification listener: `com.mobilerun.portal/.service.MobilerunNotificationListener`, when notification tests are in scope.
+- Accessibility service: `com.carrun.portal/.service.CarrunAccessibilityService`.
+- Notification listener: `com.carrun.portal/.service.CarrunNotificationListener`, when notification tests are in scope.
 - Runtime permissions needed for the selected checks.
 
 ## Orientation

@@ -6,22 +6,22 @@
 <data-extraction-rules>
     <cloud-backup>
         <!-- Exclude device_id from backup to ensure unique IDs per device/emulator -->
-        <exclude domain="sharedpref" path="mobilerun_device.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_secrets.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_sms.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_audio.xml"/>
-        <exclude domain="database" path="mobilerun_sms.db"/>
-        <exclude domain="database" path="mobilerun_sms.db-wal"/>
-        <exclude domain="database" path="mobilerun_sms.db-shm"/>
+        <exclude domain="sharedpref" path="carrun_device.xml"/>
+        <exclude domain="sharedpref" path="carrun_secrets.xml"/>
+        <exclude domain="sharedpref" path="carrun_sms.xml"/>
+        <exclude domain="sharedpref" path="carrun_audio.xml"/>
+        <exclude domain="database" path="carrun_sms.db"/>
+        <exclude domain="database" path="carrun_sms.db-wal"/>
+        <exclude domain="database" path="carrun_sms.db-shm"/>
     </cloud-backup>
     <device-transfer>
         <!-- Exclude device_id from device transfer to ensure unique IDs -->
-        <exclude domain="sharedpref" path="mobilerun_device.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_secrets.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_sms.xml"/>
-        <exclude domain="sharedpref" path="mobilerun_audio.xml"/>
-        <exclude domain="database" path="mobilerun_sms.db"/>
-        <exclude domain="database" path="mobilerun_sms.db-wal"/>
-        <exclude domain="database" path="mobilerun_sms.db-shm"/>
+        <exclude domain="sharedpref" path="carrun_device.xml"/>
+        <exclude domain="sharedpref" path="carrun_secrets.xml"/>
+        <exclude domain="sharedpref" path="carrun_sms.xml"/>
+        <exclude domain="sharedpref" path="carrun_audio.xml"/>
+        <exclude domain="database" path="carrun_sms.db"/>
+        <exclude domain="database" path="carrun_sms.db-wal"/>
+        <exclude domain="database" path="carrun_sms.db-shm"/>
     </device-transfer>
 </data-extraction-rules>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
         <activity
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkFixtureActivity"
             android:enabled="true"
             android:exported="true">
             <!-- Keeps this fixture APK visible through Portal's existing launcher queries. -->
@@ -21,8 +21,8 @@
             </intent-filter>
         </activity>
         <activity-alias
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkFixtureAlias"
-            android:targetActivity="com.mobilerun.portal.deeplinks.DeepLinkFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkFixtureAlias"
+            android:targetActivity="com.carrun.portal.deeplinks.DeepLinkFixtureActivity"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkEdgeFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkEdgeFixtureActivity"
             android:exported="true">
             <!-- The host string has a values-fr variant, so Android ignores it. -->
             <intent-filter>
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkPrivateFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkPrivateFixtureActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -60,7 +60,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkDisabledFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkDisabledFixtureActivity"
             android:enabled="false"
             android:exported="true">
             <intent-filter>
@@ -71,7 +71,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobilerun.portal.deeplinks.DeepLinkProtectedFixtureActivity"
+            android:name="com.carrun.portal.deeplinks.DeepLinkProtectedFixtureActivity"
             android:exported="true"
             android:permission="android.permission.MASTER_CLEAR">
             <intent-filter>

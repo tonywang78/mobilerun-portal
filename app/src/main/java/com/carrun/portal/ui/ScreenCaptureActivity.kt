@@ -1,0 +1,157 @@
+package com.carrun.portal.ui
+
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.media.projection.MediaProjectionManager
+import android.os.Bundle
+import android.util.Log
+import com.carrun.portal.config.ConfigManager
+import com.carrun.portal.service.AutoAcceptGate
+import com.carrun.portal.service.CaptureSizing
+import com.carrun.portal.service.MediaProjectionScreenshotter
+import com.carrun.portal.service.ReverseConnectionService
+import com.carrun.portal.service.ScreenCaptureService
+import com.carrun.portal.streaming.WebRtcManager
+import org.json.JSONObject
+
+/**
+ * Invisible activity to handle the MediaProjection permission request.
+ * It is launched by the service/dispatcher, requests permission, and passes the result to the ScreenCaptureService.
+ */
+class ScreenCaptureActivity : Activity() {
+
+    companion object {
+        private const val REQUEST_CODE_CAPTURE_PERM = 1001
+        private const val REQUEST_CODE_RECORD_AUDIO = 1002
+        private const val TAG = "ScreenCaptureActivity"
+
+        const val EXTRA_MODE = "mode"
+        const val EXTRA_AUTO_CAPTURE_SIZE = "auto_capture_size"
+        const val EXTRA_MAX_WIDTH = "max_width"
+        const val EXTRA_MAX_HEIGHT = "max_height"
+        const val MODE_STREAM = "stream"
+        const val MODE_SCREENSHOT = "screenshot"
+    }
+
+    private lateinit var mediaProjectionManager: MediaProjectionManager
+    private var recordAudioRequestPending = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        if (savedInstanceState == null) {
+            AutoAcceptGate.armMediaProjection()
+            startActivityForResult(mediaProjectionManager.createScreenCaptureIntent(), REQUEST_CODE_CAPTURE_PERM)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE_CAPTURE_PERM) {
+            AutoAcceptGate.disarmMediaProjection()
+            val mode = intent.getStringExtra(EXTRA_MODE) ?: MODE_STREAM
+            if (mode == MODE_SCREENSHOT) {
+                MediaProjectionScreenshotter.getInstance(this)
+                    .onPermissionResult(resultCode, data)
+            } else if (resultCode == Activity.RESULT_OK && data != null) {
+                val (captureWidth, captureHeight) =
+                    if (intent.hasExtra(EXTRA_MAX_WIDTH) && intent.hasExtra(EXTRA_MAX_HEIGHT)) {
+                        CaptureSizing.deriveCapCaptureSize(
+                            this,
+                            intent.getIntExtra(EXTRA_MAX_WIDTH, 0),
+                            intent.getIntExtra(EXTRA_MAX_HEIGHT, 0),
+                        )
+                    } else if (intent.getBooleanExtra(EXTRA_AUTO_CAPTURE_SIZE, false)) {
+                        CaptureSizing.deriveAutoCaptureSize(this)
+                    } else {
+                        Pair(
+                            intent.getIntExtra(ScreenCaptureService.EXTRA_WIDTH, 720),
+                            intent.getIntExtra(ScreenCaptureService.EXTRA_HEIGHT, 1280),
+                        )
+                    }
+                // Pass the permission result to the service
+                val serviceIntent = Intent(this, ScreenCaptureService::class.java).apply {
+                    action = ScreenCaptureService.ACTION_PERMISSION_RESULT
+                    putExtra(ScreenCaptureService.EXTRA_CAPTURE_MODE, ScreenCaptureService.CAPTURE_MODE_STREAM)
+                    putExtra(ScreenCaptureService.EXTRA_RESULT_CODE, resultCode)
+                    putExtra(ScreenCaptureService.EXTRA_RESULT_DATA, data)
+                    // Forward stream config from launching intent
+                    putExtra(ScreenCaptureService.EXTRA_WIDTH, captureWidth)
+                    putExtra(ScreenCaptureService.EXTRA_HEIGHT, captureHeight)
+                    putExtra(ScreenCaptureService.EXTRA_FPS, intent.getIntExtra(ScreenCaptureService.EXTRA_FPS, 30))
+                    putExtra(ScreenCaptureService.EXTRA_WAIT_FOR_OFFER, intent.getBooleanExtra(ScreenCaptureService.EXTRA_WAIT_FOR_OFFER, false))
+                }
+                startForegroundService(serviceIntent)
+                // Asked after the stream has started, so the answer never delays it; audio follows a grant.
+                if (DeviceAudioPermissionPrompt.claimRequest(this)) {
+                    recordAudioRequestPending = true
+                    requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), REQUEST_CODE_RECORD_AUDIO)
+                }
+            } else {
+                Log.e(TAG, "MediaProjection permission denied")
+                // Notify cloud of permission denial
+                notifyPermissionDenied()
+            }
+
+            if (!recordAudioRequestPending) finish()
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        if (requestCode == REQUEST_CODE_RECORD_AUDIO) {
+            recordAudioRequestPending = false
+            AutoAcceptGate.disarmRecordAudio()
+            finish()
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+    override fun onDestroy() {
+        // Closed before the Record audio answer: disarm, and let the next stream ask again.
+        if (recordAudioRequestPending) {
+            recordAudioRequestPending = false
+            AutoAcceptGate.disarmRecordAudio()
+            if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ConfigManager.getInstance(this).deviceAudioPermissionPrompted = false
+            }
+        }
+        super.onDestroy()
+    }
+    
+    private fun notifyPermissionDenied() {
+        try {
+            val service = ReverseConnectionService.getInstance()
+            if (service != null) {
+                val requestId = WebRtcManager
+                    .getInstance(this)
+                    .getStreamRequestId()
+
+                val errorMessage = JSONObject().apply {
+                    put("method", "stream/error")
+                    put("params", JSONObject().apply {
+                        put("error", "permission_denied")
+                        put("message", "User denied screen capture permission")
+                        if (requestId != null) put("sessionId", requestId)
+                    })
+                }
+                service.sendText(errorMessage.toString())
+            } else {
+                Log.w(TAG, "ReverseConnectionService not available to notify cloud")
+            }
+            WebRtcManager
+                .getInstance(this)
+                .setStreamRequestId(null)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to notify cloud of permission denial", e)
+        }
+    }
+}

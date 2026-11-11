@@ -55,7 +55,7 @@ def main():
     parser.add_argument("--ws-url", default=os.environ.get("PORTAL_WS_URL", "ws://127.0.0.1:8081"))
     parser.add_argument("--token", default=os.environ.get("PORTAL_TOKEN"))
     parser.add_argument("--phone")
-    parser.add_argument("--message", default="Mobilerun SMS gateway smoke test")
+    parser.add_argument("--message", default="Carrun SMS gateway smoke test")
     parser.add_argument("--send", action="store_true", help="Actually call sms/send; requires a real SIM and phone number.")
     parser.add_argument("--require-websocket", action="store_true")
     args = parser.parse_args()
@@ -70,7 +70,7 @@ def main():
         if not capabilities["result"].get("gateway_enabled"):
             raise AssertionError(
                 "SMS gateway is disabled; enable it in Portal Settings or with "
-                "adb shell content insert --uri content://com.mobilerun.portal/sms/gateway --bind enabled:b:true"
+                "adb shell content insert --uri content://com.carrun.portal/sms/gateway --bind enabled:b:true"
             )
         messages = http_post(args.base_url, args.token, "sms/messages/list", {"box": "inbox", "limit": 1})
         if messages.get("status") == "success":

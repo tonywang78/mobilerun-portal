@@ -31,7 +31,7 @@ curl -X POST -H "Authorization: Bearer YOUR_TOKEN" \
 ContentProvider equivalent:
 
 ```bash
-adb shell "content query --uri 'content://com.mobilerun.portal/app/deep-links?package=com.example.app'"
+adb shell "content query --uri 'content://com.carrun.portal/app/deep-links?package=com.example.app'"
 ```
 
 `package` is required; `packageName` is accepted as an alias. The result includes:
@@ -104,7 +104,7 @@ curl -X POST -H "Authorization: Bearer YOUR_TOKEN" \
 ContentProvider equivalent:
 
 ```bash
-adb shell "content query --uri 'content://com.mobilerun.portal/app/deep-link/resolve?package=com.example.app&deepLink=https%3A%2F%2Fexample.com%2Forders%2F123'"
+adb shell "content query --uri 'content://com.carrun.portal/app/deep-link/resolve?package=com.example.app&deepLink=https%3A%2F%2Fexample.com%2Forders%2F123'"
 ```
 
 `package` and an absolute `deepLink` URI are required. Optional `action` defaults

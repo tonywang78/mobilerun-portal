@@ -2,55 +2,55 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- =====================================================================
-         Base.Theme.Mobilerun: shared attrs for both light and dark modes.
+         Base.Theme.Carrun: shared attrs for both light and dark modes.
          All color attrs reference @color/* resources; DayNight resolves them
          against values/colors.xml (light) or values-night/colors.xml (dark).
-         Defined ONCE here. Theme.Mobilerun extends it with per-mode overrides.
+         Defined ONCE here. Theme.Carrun extends it with per-mode overrides.
          ===================================================================== -->
-    <style name="Base.Theme.Mobilerun" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.Carrun" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Brand -->
-        <item name="colorPrimary">@color/mobilerun_primary</item>
-        <item name="colorOnPrimary">@color/mobilerun_primary_foreground</item>
-        <item name="colorPrimaryVariant">@color/mobilerun_primary</item>
-        <item name="colorSecondary">@color/mobilerun_secondary</item>
-        <item name="colorOnSecondary">@color/mobilerun_secondary_foreground</item>
-        <item name="colorSecondaryVariant">@color/mobilerun_secondary</item>
+        <item name="colorPrimary">@color/carrun_primary</item>
+        <item name="colorOnPrimary">@color/carrun_primary_foreground</item>
+        <item name="colorPrimaryVariant">@color/carrun_primary</item>
+        <item name="colorSecondary">@color/carrun_secondary</item>
+        <item name="colorOnSecondary">@color/carrun_secondary_foreground</item>
+        <item name="colorSecondaryVariant">@color/carrun_secondary</item>
 
         <!-- Surface / background -->
-        <item name="colorSurface">@color/mobilerun_card</item>
-        <item name="colorOnSurface">@color/mobilerun_card_foreground</item>
-        <item name="android:colorBackground">@color/mobilerun_background</item>
-        <item name="android:windowBackground">@color/mobilerun_background</item>
-        <item name="android:statusBarColor">@color/mobilerun_background</item>
+        <item name="colorSurface">@color/carrun_card</item>
+        <item name="colorOnSurface">@color/carrun_card_foreground</item>
+        <item name="android:colorBackground">@color/carrun_background</item>
+        <item name="android:windowBackground">@color/carrun_background</item>
+        <item name="android:statusBarColor">@color/carrun_background</item>
 
         <!-- Error -->
-        <item name="colorError">@color/mobilerun_destructive</item>
-        <item name="colorOnError">@color/mobilerun_destructive_foreground</item>
+        <item name="colorError">@color/carrun_destructive</item>
+        <item name="colorOnError">@color/carrun_destructive_foreground</item>
 
         <!-- Text -->
-        <item name="android:textColorPrimary">@color/mobilerun_foreground</item>
-        <item name="android:textColorSecondary">@color/mobilerun_muted_foreground</item>
-        <item name="android:textColorHint">@color/mobilerun_muted_foreground</item>
+        <item name="android:textColorPrimary">@color/carrun_foreground</item>
+        <item name="android:textColorSecondary">@color/carrun_muted_foreground</item>
+        <item name="android:textColorHint">@color/carrun_muted_foreground</item>
 
         <!-- Control highlight (ripple) -->
-        <item name="colorControlHighlight">@color/mobilerun_ripple</item>
+        <item name="colorControlHighlight">@color/carrun_ripple</item>
 
-        <!-- Typography: sans + serif are shared; mono is per-mode (see Theme.Mobilerun). -->
+        <!-- Typography: sans + serif are shared; mono is per-mode (see Theme.Carrun). -->
         <item name="android:fontFamily">@font/geist_sans</item>
         <item name="fontFamily">@font/geist_sans</item>
         <item name="fontFamilySerif">@font/abhaya_libre</item>
 
         <!-- Shape -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Mobilerun.Small</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Mobilerun.Medium</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Mobilerun.Large</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Carrun.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Carrun.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Carrun.Large</item>
 
         <!-- Component defaults -->
-        <item name="materialCardViewStyle">@style/Widget.Mobilerun.CardView</item>
-        <item name="materialButtonStyle">@style/Widget.Mobilerun.Button</item>
-        <item name="switchStyle">@style/Widget.Mobilerun.Switch</item>
-        <item name="textInputStyle">@style/Widget.Mobilerun.TextInputLayout</item>
-        <item name="android:seekBarStyle">@style/Widget.Mobilerun.SeekBar</item>
+        <item name="materialCardViewStyle">@style/Widget.Carrun.CardView</item>
+        <item name="materialButtonStyle">@style/Widget.Carrun.Button</item>
+        <item name="switchStyle">@style/Widget.Carrun.Switch</item>
+        <item name="textInputStyle">@style/Widget.Carrun.TextInputLayout</item>
+        <item name="android:seekBarStyle">@style/Widget.Carrun.SeekBar</item>
 
         <!-- Preserved activity transitions -->
         <item name="android:windowActivityTransitions">true</item>
@@ -59,10 +59,10 @@
     </style>
 
     <!-- =====================================================================
-         Theme.Mobilerun (LIGHT): extends Base with light-only attrs.
+         Theme.Carrun (LIGHT): extends Base with light-only attrs.
          The same name is redefined in values-night/themes.xml for dark mode.
          ===================================================================== -->
-    <style name="Theme.Mobilerun" parent="Base.Theme.Mobilerun">
+    <style name="Theme.Carrun" parent="Base.Theme.Carrun">
         <item name="android:windowLightStatusBar">true</item>
         <item name="fontFamilyMono">@font/ibm_plex_mono</item>
     </style>
@@ -71,24 +71,24 @@
          Component styles
          ===================================================================== -->
 
-    <style name="ShapeAppearance.Mobilerun.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.Carrun.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">16dp</item>
     </style>
 
-    <style name="ShapeAppearance.Mobilerun.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="ShapeAppearance.Carrun.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">18dp</item>
     </style>
 
-    <style name="ShapeAppearance.Mobilerun.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <style name="ShapeAppearance.Carrun.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerSize">20dp</item>
     </style>
 
-    <style name="Widget.Mobilerun.CardView" parent="Widget.MaterialComponents.CardView">
+    <style name="Widget.Carrun.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">4dp</item>
         <item name="cardCornerRadius">20dp</item>
-        <item name="cardBackgroundColor">@color/mobilerun_card</item>
-        <item name="rippleColor">@color/mobilerun_ripple</item>
-        <item name="strokeColor">@color/mobilerun_border</item>
+        <item name="cardBackgroundColor">@color/carrun_card</item>
+        <item name="rippleColor">@color/carrun_ripple</item>
+        <item name="strokeColor">@color/carrun_border</item>
         <item name="strokeWidth">1dp</item>
         <item name="cardPreventCornerOverlap">true</item>
         <item name="contentPadding">0dp</item>
@@ -99,11 +99,11 @@
         layouts. Pulls primary color via theme tinting (works correctly
         because MaterialButton manages its own background).
     -->
-    <style name="Widget.Mobilerun.Button" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.Carrun.Button" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">18dp</item>
-        <item name="backgroundTint">@color/mobilerun_primary</item>
-        <item name="android:textColor">@color/mobilerun_primary_foreground</item>
-        <item name="rippleColor">@color/mobilerun_ripple</item>
+        <item name="backgroundTint">@color/carrun_primary</item>
+        <item name="android:textColor">@color/carrun_primary_foreground</item>
+        <item name="rippleColor">@color/carrun_ripple</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">0.005</item>
         <item name="android:paddingTop">12dp</item>
@@ -115,13 +115,13 @@
     <!--
         Opt-in gradient-overlay button (spec "signature touch"). Uses
         AppCompatButton because MaterialButton rejects custom backgrounds.
-        Apply with style="@style/Widget.Mobilerun.Button.Primary" on
+        Apply with style="@style/Widget.Carrun.Button.Primary" on
         prominent CTAs. Not wired into materialButtonStyle - opt-in only.
     -->
-    <style name="Widget.Mobilerun.Button.Primary" parent="Widget.AppCompat.Button">
+    <style name="Widget.Carrun.Button.Primary" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/bg_button_primary</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
-        <item name="android:textColor">@color/mobilerun_primary_foreground</item>
+        <item name="android:textColor">@color/carrun_primary_foreground</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">0.005</item>
         <item name="android:paddingStart">20dp</item>
@@ -133,34 +133,34 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
-    <style name="Widget.Mobilerun.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+    <style name="Widget.Carrun.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
         <item name="useMaterialThemeColors">false</item>
-        <item name="thumbTint">@color/mobilerun_switch_thumb_tint</item>
-        <item name="trackTint">@color/mobilerun_switch_track_tint</item>
+        <item name="thumbTint">@color/carrun_switch_thumb_tint</item>
+        <item name="trackTint">@color/carrun_switch_track_tint</item>
     </style>
 
-    <style name="Widget.Mobilerun.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="Widget.Carrun.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!-- boxStrokeColor accepts a ColorStateList for per-state colors. Currently a single
-             color; MDC uses ?attr/colorPrimary (= mobilerun_primary) automatically for the
-             focused state. If we want a distinct mobilerun_ring color on focus later,
+             color; MDC uses ?attr/colorPrimary (= carrun_primary) automatically for the
+             focused state. If we want a distinct carrun_ring color on focus later,
              change this to a @color/* ColorStateList selector. -->
-        <item name="boxStrokeColor">@color/mobilerun_border</item>
+        <item name="boxStrokeColor">@color/carrun_border</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
         <item name="boxCornerRadiusTopStart">18dp</item>
         <item name="boxCornerRadiusTopEnd">18dp</item>
         <item name="boxCornerRadiusBottomStart">18dp</item>
         <item name="boxCornerRadiusBottomEnd">18dp</item>
-        <item name="hintTextColor">@color/mobilerun_primary</item>
-        <item name="android:textColorHint">@color/mobilerun_muted_foreground</item>
-        <item name="endIconTint">@color/mobilerun_primary</item>
-        <item name="boxBackgroundColor">@color/mobilerun_input</item>
+        <item name="hintTextColor">@color/carrun_primary</item>
+        <item name="android:textColorHint">@color/carrun_muted_foreground</item>
+        <item name="endIconTint">@color/carrun_primary</item>
+        <item name="boxBackgroundColor">@color/carrun_input</item>
     </style>
 
-    <style name="Widget.Mobilerun.SeekBar" parent="Widget.AppCompat.SeekBar">
-        <item name="android:progressTint">@color/mobilerun_primary</item>
-        <item name="android:thumbTint">@color/mobilerun_primary</item>
-        <item name="android:progressBackgroundTint">@color/mobilerun_border</item>
+    <style name="Widget.Carrun.SeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressTint">@color/carrun_primary</item>
+        <item name="android:thumbTint">@color/carrun_primary</item>
+        <item name="android:progressBackgroundTint">@color/carrun_border</item>
         <item name="android:minHeight">4dp</item>
         <item name="android:maxHeight">4dp</item>
         <item name="android:paddingStart">0dp</item>
@@ -181,12 +181,12 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="Theme.MobilerunPortal.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
-        <item name="colorPrimary">@color/mobilerun_primary</item>
-        <item name="colorSurface">@color/mobilerun_popover</item>
-        <item name="android:windowBackground">@color/mobilerun_popover</item>
-        <item name="android:textColorPrimary">@color/mobilerun_popover_foreground</item>
-        <item name="android:textColorSecondary">@color/mobilerun_muted_foreground</item>
+    <style name="Theme.CarrunPortal.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/carrun_primary</item>
+        <item name="colorSurface">@color/carrun_popover</item>
+        <item name="android:windowBackground">@color/carrun_popover</item>
+        <item name="android:textColorPrimary">@color/carrun_popover_foreground</item>
+        <item name="android:textColorSecondary">@color/carrun_muted_foreground</item>
         <item name="android:fontFamily">@font/geist_sans</item>
         <item name="fontFamily">@font/geist_sans</item>
     </style>

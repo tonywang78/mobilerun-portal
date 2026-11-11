@@ -762,7 +762,7 @@
                     android:text="@string/sms_permission_phone_state" />
             </LinearLayout>
 
-            <!-- Mobilerun cloud SMS -->
+            <!-- Carrun cloud SMS -->
             <LinearLayout
                 android:id="@+id/sms_cloud_section"
                 android:layout_width="match_parent"

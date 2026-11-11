@@ -1,13 +1,13 @@
 # Local API
 
-Mobilerun Portal exposes local control over HTTP, WebSocket, and ContentProvider. Use these when the device is on the same network or connected via ADB.
+Carrun Portal exposes local control over HTTP, WebSocket, and ContentProvider. Use these when the device is on the same network or connected via ADB.
 
 ## Auth token
 
 Local HTTP and WebSocket access require a token (except `GET /ping`). You can copy it from the main screen or query it via ADB:
 
 ```bash
-adb shell content query --uri content://com.mobilerun.portal/auth_token
+adb shell content query --uri content://com.carrun.portal/auth_token
 ```
 
 Response example:
@@ -22,7 +22,7 @@ Response example:
 | --- | --- | --- | --- | --- |
 | Tree/state/version/packages | Yes | Yes | Yes | Yes when Accessibility is ready; headless subset otherwise |
 | Keyboard/overlay/config actions | Yes | Yes | Yes | Yes when Accessibility is ready |
-| Clipboard get/set | Yes | Yes | Yes | Yes when Mobilerun Keyboard is available |
+| Clipboard get/set | Yes | Yes | Yes | Yes when Carrun Keyboard is available |
 | Screenshot | No direct endpoint | Yes | Yes | Yes when Accessibility is ready |
 | Deep-link discovery / resolution | Query | POST | Yes | Yes, including headless mode |
 | SMS (`sms/*`) | Query + `sms/send` insert | POST | Yes | Yes, including headless mode |
@@ -77,7 +77,7 @@ Response format:
 | `keyboard/input` | `base64_text`, `clear` | `clear` defaults to `true` |
 | `keyboard/clear` | - | Clears focused input |
 | `keyboard/key` | `key_code` | Uses Android key codes |
-| `clipboard/get` | - | Reads clipboard text; requires Mobilerun Keyboard to be selected |
+| `clipboard/get` | - | Reads clipboard text; requires Carrun Keyboard to be selected |
 | `clipboard/set` | `text` or `text_base64` | Sets clipboard text |
 | `overlay_offset` | `offset` | Vertical offset in pixels |
 | `socket_port` | `port` | Updates HTTP server port |
@@ -87,7 +87,7 @@ Response format:
 | `version` | - | App version |
 | `time` | - | Unix ms timestamp |
 | `timezone/get` | - | `{timezone}`: IANA id |
-| `location/get` | - | Reverse connection only; `{latitude, longitude}`; needs **Share location with Mobilerun cloud** on in Portal Settings and location allowed all the time |
+| `location/get` | - | Reverse connection only; `{latitude, longitude}`; needs **Share location with Carrun cloud** on in Portal Settings and location allowed all the time |
 | `sms/capabilities` | - | Gateway switch (`gateway_enabled`), SMS permissions, SMS messaging availability, active subscriptions |
 | `sms/send` | `phone_number`, `message`, optional `message_id`, `subscription_id` or `sim_slot`, `delivery_report` | Sends one text SMS; multipart bodies are split automatically |
 | `sms/status` | `message_id` | Returns in-memory send state for recent sends |
@@ -121,7 +121,7 @@ the reverse notification shape.
 
 Install notes:
 
-- The device must allow **Install unknown apps** for Mobilerun Portal.
+- The device must allow **Install unknown apps** for Carrun Portal.
 - Enable **Install Auto-Accept** in Settings to auto-confirm install prompts.
 
 ### Screenshot response format
@@ -187,7 +187,7 @@ curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8080/ping
 - `/phone_state`
 - `/version`
 - `/packages`
-- `/clipboard/get` (requires Mobilerun Keyboard to be selected)
+- `/clipboard/get` (requires Carrun Keyboard to be selected)
 - `/screenshot?hideOverlay=false` (JSON envelope containing base64 PNG; see [Screenshot response format](#screenshot-response-format))
 
 ### POST endpoints
@@ -237,7 +237,7 @@ curl -X POST \
 
 ## ContentProvider (ADB)
 
-All commands use `content://com.mobilerun.portal/`.
+All commands use `content://com.carrun.portal/`.
 
 The ContentProvider covers core tree/state/keyboard/clipboard/overlay/config and SMS flows. It does not expose direct screenshot, install, or WebRTC streaming endpoints.
 
@@ -246,65 +246,65 @@ Trigger queries and mutations are also available through the same `ContentProvid
 ### Query
 
 ```bash
-adb shell content query --uri content://com.mobilerun.portal/ping
-adb shell content query --uri content://com.mobilerun.portal/version
-adb shell content query --uri content://com.mobilerun.portal/a11y_tree
-adb shell content query --uri content://com.mobilerun.portal/a11y_tree_full?filter=false
-adb shell content query --uri content://com.mobilerun.portal/phone_state
-adb shell content query --uri content://com.mobilerun.portal/state
-adb shell content query --uri content://com.mobilerun.portal/state_full?filter=false
-adb shell content query --uri content://com.mobilerun.portal/packages
-adb shell content query --uri content://com.mobilerun.portal/auth_token
-adb shell content query --uri content://com.mobilerun.portal/clipboard/get
-adb shell content query --uri content://com.mobilerun.portal/screen_keep_awake_status
-adb shell content query --uri content://com.mobilerun.portal/stream_session_limit
-adb shell content query --uri content://com.mobilerun.portal/cloud/reconnect_after_restart
-adb shell content query --uri content://com.mobilerun.portal/device_audio
-adb shell content query --uri content://com.mobilerun.portal/sms/capabilities
-adb shell content query --uri 'content://com.mobilerun.portal/sms/status?message_id=MSG_ID'
-adb shell "content query --uri 'content://com.mobilerun.portal/sms/messages?box=inbox&limit=10'"
-adb shell content query --uri content://com.mobilerun.portal/sms/messages/SMS_ID
-adb shell "content query --uri 'content://com.mobilerun.portal/app/deep-links?package=com.example.app'"
+adb shell content query --uri content://com.carrun.portal/ping
+adb shell content query --uri content://com.carrun.portal/version
+adb shell content query --uri content://com.carrun.portal/a11y_tree
+adb shell content query --uri content://com.carrun.portal/a11y_tree_full?filter=false
+adb shell content query --uri content://com.carrun.portal/phone_state
+adb shell content query --uri content://com.carrun.portal/state
+adb shell content query --uri content://com.carrun.portal/state_full?filter=false
+adb shell content query --uri content://com.carrun.portal/packages
+adb shell content query --uri content://com.carrun.portal/auth_token
+adb shell content query --uri content://com.carrun.portal/clipboard/get
+adb shell content query --uri content://com.carrun.portal/screen_keep_awake_status
+adb shell content query --uri content://com.carrun.portal/stream_session_limit
+adb shell content query --uri content://com.carrun.portal/cloud/reconnect_after_restart
+adb shell content query --uri content://com.carrun.portal/device_audio
+adb shell content query --uri content://com.carrun.portal/sms/capabilities
+adb shell content query --uri 'content://com.carrun.portal/sms/status?message_id=MSG_ID'
+adb shell "content query --uri 'content://com.carrun.portal/sms/messages?box=inbox&limit=10'"
+adb shell content query --uri content://com.carrun.portal/sms/messages/SMS_ID
+adb shell "content query --uri 'content://com.carrun.portal/app/deep-links?package=com.example.app'"
 ```
 
 ### Insert
 
 ```bash
-adb shell content insert --uri content://com.mobilerun.portal/keyboard/input --bind base64_text:s:"SGVsbG8="
-adb shell content insert --uri content://com.mobilerun.portal/keyboard/clear
-adb shell content insert --uri content://com.mobilerun.portal/keyboard/key --bind key_code:i:66
+adb shell content insert --uri content://com.carrun.portal/keyboard/input --bind base64_text:s:"SGVsbG8="
+adb shell content insert --uri content://com.carrun.portal/keyboard/clear
+adb shell content insert --uri content://com.carrun.portal/keyboard/key --bind key_code:i:66
 
-adb shell content insert --uri content://com.mobilerun.portal/clipboard/set --bind text:s:"Hello World"
-adb shell content insert --uri content://com.mobilerun.portal/clipboard/set --bind text_base64:s:"SGVsbG8gV29ybGQ="
+adb shell content insert --uri content://com.carrun.portal/clipboard/set --bind text:s:"Hello World"
+adb shell content insert --uri content://com.carrun.portal/clipboard/set --bind text_base64:s:"SGVsbG8gV29ybGQ="
 
-adb shell content insert --uri content://com.mobilerun.portal/overlay_offset --bind offset:i:100
-adb shell content insert --uri content://com.mobilerun.portal/overlay_visible --bind visible:b:false
-adb shell content insert --uri content://com.mobilerun.portal/socket_port --bind port:i:8090
+adb shell content insert --uri content://com.carrun.portal/overlay_offset --bind offset:i:100
+adb shell content insert --uri content://com.carrun.portal/overlay_visible --bind visible:b:false
+adb shell content insert --uri content://com.carrun.portal/socket_port --bind port:i:8090
 
-adb shell content insert --uri content://com.mobilerun.portal/toggle_websocket_server --bind enabled:b:true --bind port:i:8081
-adb shell content insert --uri content://com.mobilerun.portal/toggle_screen_keep_awake --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/toggle_screen_keep_awake --bind enabled:b:false
+adb shell content insert --uri content://com.carrun.portal/toggle_websocket_server --bind enabled:b:true --bind port:i:8081
+adb shell content insert --uri content://com.carrun.portal/toggle_screen_keep_awake --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/toggle_screen_keep_awake --bind enabled:b:false
 
 # Max concurrent stream viewers, the main stream included (1-5, default 3); applies to new viewers
-adb shell content insert --uri content://com.mobilerun.portal/stream_session_limit --bind limit:i:4
+adb shell content insert --uri content://com.carrun.portal/stream_session_limit --bind limit:i:4
 
-adb shell content insert --uri content://com.mobilerun.portal/configure_reverse_connection --bind url_base64:s:"d3NzOi8vYXBpLm1vYmlsZXJ1bi5haS92MS9wcm92aWRlcnMvcGVyc29uYWwvam9pbg==" --bind token_base64:s:"WU9VUl9UT0tFTg==" --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/configure_reverse_connection --bind service_key_base64:s:"WU9VUl9LRVk="
+adb shell content insert --uri content://com.carrun.portal/configure_reverse_connection --bind url_base64:s:"d3NzOi8vYXBpLm1vYmlsZXJ1bi5haS92MS9wcm92aWRlcnMvcGVyc29uYWwvam9pbg==" --bind token_base64:s:"WU9VUl9UT0tFTg==" --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/configure_reverse_connection --bind service_key_base64:s:"WU9VUl9LRVk="
 
-adb shell content insert --uri content://com.mobilerun.portal/toggle_production_mode --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/toggle_production_mode --bind enabled:b:true
 
 # Reconnect to the cloud after a reboot or app update (default off; needs saved cloud credentials)
-adb shell content insert --uri content://com.mobilerun.portal/cloud/reconnect_after_restart --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/cloud/reconnect_after_restart --bind enabled:b:false
+adb shell content insert --uri content://com.carrun.portal/cloud/reconnect_after_restart --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/cloud/reconnect_after_restart --bind enabled:b:false
 
-adb shell content insert --uri content://com.mobilerun.portal/sms/gateway --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/sms/gateway --bind enabled:b:false
+adb shell content insert --uri content://com.carrun.portal/sms/gateway --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/sms/gateway --bind enabled:b:false
 
 # Stream media audio with the screen (default on, Android 10+; silent until RECORD_AUDIO is granted)
-adb shell content insert --uri content://com.mobilerun.portal/device_audio --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/device_audio --bind enabled:b:false
+adb shell content insert --uri content://com.carrun.portal/device_audio --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/device_audio --bind enabled:b:false
 
-adb shell content insert --uri content://com.mobilerun.portal/sms/send \
+adb shell content insert --uri content://com.carrun.portal/sms/send \
   --bind phone_number:s:+15550001111 \
   --bind message_base64:s:$(printf 'hello from Portal' | base64)
 ```

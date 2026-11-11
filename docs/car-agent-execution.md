@@ -1,13 +1,13 @@
 # Car GUI Agent 执行逻辑
 
-本文描述 `:agent`（`com.mobilerun.caragent`）从用户点「执行」到结束的编排与分支。部署与配置说明见 [car-gui-agent.md](car-gui-agent.md)；Portal HTTP 见 [local-api.md](local-api.md)。
+本文描述 `:agent`（`com.carrun.caragent`）从用户点「执行」到结束的编排与分支。部署与配置说明见 [car-gui-agent.md](car-gui-agent.md)；Portal HTTP 见 [local-api.md](local-api.md)。
 
 ## 1. 双 APK 角色
 
 ```mermaid
 flowchart LR
   User[用户 / 语音] --> Agent[Car GUI Agent]
-  Agent -->|"HTTP / 无障碍代理"| Portal[Mobilerun Portal]
+  Agent -->|"HTTP / 无障碍代理"| Portal[Carrun Portal]
   Portal --> UI[车机前台 App UI]
   Agent -->|"System One 可选"| SysOne[TypeSafe 云端 / 本地 Laya]
   Agent -->|"chat/completions 可选"| OpenAI[OpenAI 兼容 LLM]
@@ -43,7 +43,7 @@ flowchart TD
 
 ## 3. CarAgent 公共入口
 
-入口：[`CarAgent.run`](../agent/src/main/java/com/mobilerun/caragent/agent/car/CarAgent.kt)。
+入口：[`CarAgent.run`](../agent/src/main/java/com/carrun/caragent/agent/car/CarAgent.kt)。
 
 ```mermaid
 flowchart TD
@@ -65,7 +65,7 @@ flowchart TD
 公共准备：
 
 1. `portal.ping()` / `get_state()` → `formattedDeviceState`、`currentPackageName`
-2. [`AppCardLoader`](../agent/src/main/java/com/mobilerun/caragent/cards/AppCardLoader.kt) 按包名加载 `assets/app_cards/*/CARD.md`（没有则 `null`，不阻断）
+2. [`AppCardLoader`](../agent/src/main/java/com/carrun/caragent/cards/AppCardLoader.kt) 按包名加载 `assets/app_cards/*/CARD.md`（没有则 `null`，不阻断）
 3. `inferRisk(goal)`：含 youtube/网页/截图等 → HIGH；改设置类 → MEDIUM；否则 LOW
 4. 按 `runPath` 三选一进入后文循环
 
@@ -95,7 +95,7 @@ flowchart TD
 
 ## 5. 快速（FastAgent）
 
-实现：[`FastAgent`](../agent/src/main/java/com/mobilerun/caragent/agent/fast/FastAgent.kt)。
+实现：[`FastAgent`](../agent/src/main/java/com/carrun/caragent/agent/fast/FastAgent.kt)。
 
 ```mermaid
 flowchart TD
@@ -116,7 +116,7 @@ flowchart TD
 
 ## 6. 深度推理（Manager → Executor）
 
-实现：[`ManagerAgent`](../agent/src/main/java/com/mobilerun/caragent/agent/manager/ManagerAgent.kt)、[`ExecutorAgent`](../agent/src/main/java/com/mobilerun/caragent/agent/executor/ExecutorAgent.kt)；循环在 `CarAgent`。
+实现：[`ManagerAgent`](../agent/src/main/java/com/carrun/caragent/agent/manager/ManagerAgent.kt)、[`ExecutorAgent`](../agent/src/main/java/com/carrun/caragent/agent/executor/ExecutorAgent.kt)；循环在 `CarAgent`。
 
 ```mermaid
 flowchart TD
@@ -138,7 +138,7 @@ flowchart TD
 
 ## 7. 决策模型（JevAgent）
 
-实现：[`JevAgent`](../agent/src/main/java/com/mobilerun/caragent/agent/jev/JevAgent.kt)、[`JevPolicy`](../agent/src/main/java/com/mobilerun/caragent/brain/jev/JevPolicy.kt)。对齐 mobile-jev：**observe → decide → execute**。
+实现：[`JevAgent`](../agent/src/main/java/com/carrun/caragent/agent/jev/JevAgent.kt)、[`JevPolicy`](../agent/src/main/java/com/carrun/caragent/brain/jev/JevPolicy.kt)。对齐 mobile-jev：**observe → decide → execute**。
 
 ```mermaid
 flowchart TD
@@ -187,13 +187,13 @@ flowchart TD
 
 ### 原子工具
 
-[`ToolRegistry.registerDefaults`](../agent/src/main/java/com/mobilerun/caragent/tools/ToolRegistry.kt)：
+[`ToolRegistry.registerDefaults`](../agent/src/main/java/com/carrun/caragent/tools/ToolRegistry.kt)：
 
 `get_state` · `click` · `click_at` · `long_press` · `swipe` · `type` · `type_secret` · `system_button` · `wait` · `open_app` · `take_screenshot` · `complete`
 
 ### 专用工具（用例）
 
-[`UseCaseTools.handlers`](../agent/src/main/java/com/mobilerun/caragent/usecases/UseCaseTools.kt)，在 `CarAgent` 里以 `customHandlers` 注入：
+[`UseCaseTools.handlers`](../agent/src/main/java/com/carrun/caragent/usecases/UseCaseTools.kt)，在 `CarAgent` 里以 `customHandlers` 注入：
 
 | 场景 | 工具名 |
 | --- | --- |
@@ -231,11 +231,11 @@ flowchart TD
   SO -->|LAYA / CUSTOM| LocalSO[可配置 baseUrl /v1/systemone]
 ```
 
-启发式关键词与用例工具名的映射见 [`OnDeviceLlmClient`](../agent/src/main/java/com/mobilerun/caragent/brain/LlmClient.kt)。
+启发式关键词与用例工具名的映射见 [`OnDeviceLlmClient`](../agent/src/main/java/com/carrun/caragent/brain/LlmClient.kt)。
 
 ## 11. 驾驶策略门禁
 
-[`DrivingPolicyGate`](../agent/src/main/java/com/mobilerun/caragent/policy/DrivingPolicyGate.kt)（概念）：
+[`DrivingPolicyGate`](../agent/src/main/java/com/carrun/caragent/policy/DrivingPolicyGate.kt)（概念）：
 
 - **低风险**：行驶中允许（摘要、日程、教程朗读等）
 - **中风险**：驻车或低速（打开设置等）

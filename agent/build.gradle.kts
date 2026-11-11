@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mobilerun.caragent"
+    namespace = "com.carrun.caragent"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mobilerun.caragent"
+        applicationId = "com.carrun.caragent"
         minSdk = 29
         targetSdk = 34
         versionCode = (project.findProperty("versionCode") as String).toInt()

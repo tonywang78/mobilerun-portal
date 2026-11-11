@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  PORTAL_ARTIFACT_PREFIX: com.mobilerun.portal
+  PORTAL_ARTIFACT_PREFIX: com.carrun.portal
 
 jobs:
   build:
@@ -209,7 +209,7 @@ jobs:
     uses: ./.github/workflows/deploy-r2.yml
     with:
       artifact-name: app-release
-      file-prefix: com.mobilerun.portal
+      file-prefix: com.carrun.portal
       tag: ${{ needs.build.outputs.version-name }}
     secrets:
       R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}

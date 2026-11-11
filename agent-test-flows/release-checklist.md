@@ -29,7 +29,7 @@ Use this as the top-level checklist before a release.
 - Task start with no stream and with stream already active.
 - Triggers and notifications.
 - Baseline comparison when a release APK is supplied.
-- Mobilerun natural-language checks when credentials are available.
+- Carrun natural-language checks when credentials are available.
 
 ## Result Summary
 

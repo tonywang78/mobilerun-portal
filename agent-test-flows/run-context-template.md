@@ -11,10 +11,10 @@ Copy this into `<artifact-dir>/run-context.md` and fill it before testing.
 | Branch | `<git-branch>` |
 | APK under test | `<apk-path>` |
 | Baseline APK | `<baseline-apk>` or `not used` |
-| Package | `com.mobilerun.portal` |
-| Content authority | `com.mobilerun.portal` |
-| Accessibility service | `com.mobilerun.portal/.service.MobilerunAccessibilityService` |
-| Notification listener | `com.mobilerun.portal/.service.MobilerunNotificationListener` |
+| Package | `com.carrun.portal` |
+| Content authority | `com.carrun.portal` |
+| Accessibility service | `com.carrun.portal/.service.CarrunAccessibilityService` |
+| Notification listener | `com.carrun.portal/.service.CarrunNotificationListener` |
 | Artifact directory | `<artifact-dir>` |
 
 ## Target
@@ -34,7 +34,7 @@ Do not paste secret values.
 | Credential | Present? | Source label |
 | --- | --- | --- |
 | OpenAI key | yes/no | `<openai-api-key-env>` |
-| Mobilerun Cloud key | yes/no | `<mobilerun-api-key-env>` |
+| Carrun Cloud key | yes/no | `<carrun-api-key-env>` |
 | Baseline APK | yes/no | `<baseline-apk>` |
 
 ## Interaction Notes

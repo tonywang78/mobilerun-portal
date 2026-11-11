@@ -12,28 +12,28 @@ Use this runbook to verify task start flows.
 
 ## Cloud Checks
 
-Run cloud-backed task checks only when `<mobilerun-api-key-env>` is available. If the app is already connected, use the existing credentials. If setup is needed, the agent may enter the key through the normal UI with taps and text input. Do not print the key, and record whether auth was preexisting or injected for this run.
+Run cloud-backed task checks only when `<carrun-api-key-env>` is available. If the app is already connected, use the existing credentials. If setup is needed, the agent may enter the key through the normal UI with taps and text input. Do not print the key, and record whether auth was preexisting or injected for this run.
 
 Prefer the provider automation path when setup is needed:
 
 ```bash
-MOBILERUN_CLOUD_KEY="${MOBILERUN_API_KEY:-}"
-if [ -z "$MOBILERUN_CLOUD_KEY" ] && [ -s /tmp/mobilerun_api_key ]; then
-  MOBILERUN_CLOUD_KEY="$(tr -d '\n' < /tmp/mobilerun_api_key)"
+CARRUN_CLOUD_KEY="${CARRUN_API_KEY:-}"
+if [ -z "$CARRUN_CLOUD_KEY" ] && [ -s /tmp/carrun_api_key ]; then
+  CARRUN_CLOUD_KEY="$(tr -d '\n' < /tmp/carrun_api_key)"
 fi
-if [ -z "$MOBILERUN_CLOUD_KEY" ]; then
-  echo "Set MOBILERUN_API_KEY or provide /tmp/mobilerun_api_key" >&2
+if [ -z "$CARRUN_CLOUD_KEY" ]; then
+  echo "Set CARRUN_API_KEY or provide /tmp/carrun_api_key" >&2
   exit 1
 fi
-API_KEY_B64="$(printf '%s' "$MOBILERUN_CLOUD_KEY" | base64 | tr -d '\n')"
+API_KEY_B64="$(printf '%s' "$CARRUN_CLOUD_KEY" | base64 | tr -d '\n')"
 PROMPT_B64="$(printf '%s' 'Open Settings and tell me which Android version is installed. Do not change any settings.' | base64 | tr -d '\n')"
 
 adb shell content insert \
-  --uri content://com.mobilerun.portal/cloud/connect \
+  --uri content://com.carrun.portal/cloud/connect \
   --bind api_key_base64:s:"$API_KEY_B64"
 
 for attempt in $(seq 1 60); do
-  STATUS="$(adb shell content query --uri content://com.mobilerun.portal/cloud/status)"
+  STATUS="$(adb shell content query --uri content://com.carrun.portal/cloud/status)"
   if printf '%s' "$STATUS" | grep -q '"connectionState":"CONNECTED"'; then
     break
   fi
@@ -43,10 +43,10 @@ for attempt in $(seq 1 60); do
   fi
   sleep 1
 done
-unset MOBILERUN_CLOUD_KEY API_KEY_B64
+unset CARRUN_CLOUD_KEY API_KEY_B64
 
 adb shell content insert \
-  --uri content://com.mobilerun.portal/cloud/tasks/launch \
+  --uri content://com.carrun.portal/cloud/tasks/launch \
   --bind prompt_base64:s:"$PROMPT_B64"
 ```
 

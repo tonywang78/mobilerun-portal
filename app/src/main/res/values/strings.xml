@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Mobilerun Portal</string>
-    <string name="accessibility_service_description">Mobilerun Portal identifies and visualizes UI elements on screen. This service helps to detect which elements are visible to the user by examining the layers of the UI, which is useful for UI analysis and automation.</string>
-    <string name="keyboard_name">Mobilerun Keyboard</string>
-    <string name="keyboard_on">Mobilerun Keyboard</string>
+    <string name="app_name">Carrun Portal</string>
+    <string name="accessibility_service_description">Carrun Portal identifies and visualizes UI elements on screen. This service helps to detect which elements are visible to the user by examining the layers of the UI, which is useful for UI analysis and automation.</string>
+    <string name="keyboard_name">Carrun Keyboard</string>
+    <string name="keyboard_on">Carrun Keyboard</string>
 
     <!-- Activity Main -->
     <string name="settings_content_description">Settings</string>
@@ -25,7 +25,7 @@
     <string name="default_port">8080</string>
     <string name="connection_details_header">Connection Details</string>
     <string name="task_prompt_card_title">Run Task</string>
-    <string name="task_prompt_card_subtitle">Start a Mobilerun task on this device and review recent runs.</string>
+    <string name="task_prompt_card_subtitle">Start a Carrun task on this device and review recent runs.</string>
     <string name="task_prompt_latest_task_label">Latest task</string>
     <string name="task_prompt_hint">Describe what the agent should do</string>
     <string name="task_prompt_model_label">Model</string>
@@ -55,7 +55,7 @@
     <string name="task_prompt_invalid_timeout">Enter a value between 1 and 1000</string>
     <string name="task_prompt_invalid_temperature">Enter a value between 0 and 2</string>
     <string name="task_prompt_loading_models">Loading models…</string>
-    <string name="task_prompt_missing_api_key">Task launch requires a Mobilerun API key.</string>
+    <string name="task_prompt_missing_api_key">Task launch requires a Carrun API key.</string>
     <string name="task_prompt_unsupported_custom_url">Task launch only supports WebSocket URLs ending in /v1/providers/personal/join.</string>
     <string name="task_prompt_started">Task started on this device.</string>
     <string name="task_prompt_return_to_portal">Return to Portal when task ends</string>
@@ -189,8 +189,8 @@
     <string name="disable_ws_server_action">Disable WS Server</string>
     <string name="reverse_connection_disconnect_action">Disconnect</string>
     <string name="reverse_connection_alert_channel">Connection alerts</string>
-    <string name="reverse_connection_gave_up_title">Disconnected from Mobilerun</string>
-    <string name="reverse_connection_gave_up_text">Couldn’t reach Mobilerun. Open Portal to reconnect.</string>
+    <string name="reverse_connection_gave_up_title">Disconnected from Carrun</string>
+    <string name="reverse_connection_gave_up_text">Couldn’t reach Carrun. Open Portal to reconnect.</string>
     <string name="event_filters_header">EVENT FILTERS</string>
     <string name="notifications_label">Notifications</string>
     <string name="push_system_notifications_label">Push system notifications</string>
@@ -212,7 +212,7 @@
 
     <!-- Permission Dialog -->
     <string name="permission_required_title">Permission Required</string>
-    <string name="install_permission_message">To install apps, Mobilerun Portal needs permission to install from unknown sources.</string>
+    <string name="install_permission_message">To install apps, Carrun Portal needs permission to install from unknown sources.</string>
     <string name="install_permission_steps">1. Tap \"Open Settings\" below\n2. Enable \"Allow from this source\"\n3. Return and try again</string>
     <string name="open_settings">Open Settings</string>
     <string name="cancel">Cancel</string>
@@ -231,24 +231,24 @@
     <string name="sms_permission_read">Read</string>
     <string name="sms_permission_receive">Receive</string>
     <string name="sms_permission_phone_state">Phone state</string>
-    <string name="sms_cloud_label">Mobilerun cloud SMS</string>
-    <string name="sms_cloud_description">Sync this phone\'s SMS with Mobilerun cloud and let it send SMS from this phone</string>
-    <string name="sms_cloud_details">• Mobilerun cloud can read the SMS on this phone, and new incoming and sent SMS.\n• Mobilerun cloud can send SMS from this phone, charged to your mobile plan.\n• SMS only: RCS and MMS are never read or sent.\n• SMS trigger events are separate and stay controlled by the event toggles.</string>
-    <string name="sms_cloud_permissions_denied">Mobilerun cloud SMS needs the SMS and phone state permissions</string>
-    <string name="sms_cloud_enable_failed">Could not turn on Mobilerun cloud SMS</string>
+    <string name="sms_cloud_label">Carrun cloud SMS</string>
+    <string name="sms_cloud_description">Sync this phone\'s SMS with Carrun cloud and let it send SMS from this phone</string>
+    <string name="sms_cloud_details">• Carrun cloud can read the SMS on this phone, and new incoming and sent SMS.\n• Carrun cloud can send SMS from this phone, charged to your mobile plan.\n• SMS only: RCS and MMS are never read or sent.\n• SMS trigger events are separate and stay controlled by the event toggles.</string>
+    <string name="sms_cloud_permissions_denied">Carrun cloud SMS needs the SMS and phone state permissions</string>
+    <string name="sms_cloud_enable_failed">Could not turn on Carrun cloud SMS</string>
     <string name="sms_cloud_choose_sim">Choose cloud SIM</string>
-    <string name="sms_cloud_sim_dialog_title">SIM for Mobilerun cloud SMS</string>
+    <string name="sms_cloud_sim_dialog_title">SIM for Carrun cloud SMS</string>
     <string name="sms_cloud_sim_label">SIM %1$d · %2$s</string>
     <string name="sms_cloud_sim_status">Cloud SIM: %1$s. SMS on other SIMs are not uploaded or sent.</string>
-    <string name="sms_cloud_sim_missing">No cloud SIM chosen. Mobilerun cloud SMS is paused until you choose one.</string>
-    <string name="sms_cloud_sim_inactive">The cloud SIM is not active. Mobilerun cloud SMS is paused until you choose a SIM.</string>
-    <string name="sms_cloud_no_sim">No active SIM. Mobilerun cloud SMS is paused.</string>
+    <string name="sms_cloud_sim_missing">No cloud SIM chosen. Carrun cloud SMS is paused until you choose one.</string>
+    <string name="sms_cloud_sim_inactive">The cloud SIM is not active. Carrun cloud SMS is paused until you choose a SIM.</string>
+    <string name="sms_cloud_no_sim">No active SIM. Carrun cloud SMS is paused.</string>
     <string name="sms_cloud_sim_failed">Could not change the cloud SIM</string>
     <string name="sms_cloud_no_telephony">This device cannot send or receive SMS</string>
     <string name="sms_cloud_missing_permissions">Missing permissions: %1$s</string>
     <string name="sms_permission_phone_numbers">Phone numbers</string>
-    <string name="location_label">Share location with Mobilerun cloud</string>
-    <string name="location_description">Lets Mobilerun cloud read where this phone is while Portal is connected.</string>
+    <string name="location_label">Share location with Carrun cloud</string>
+    <string name="location_description">Lets Carrun cloud read where this phone is while Portal is connected.</string>
     <string name="location_status_off">Location permission not granted.</string>
     <string name="location_status_foreground">Allowed only while Portal is open. Choose \"Allow all the time\" so the cloud can read it.</string>
     <string name="location_allow">Allow location</string>
@@ -262,38 +262,38 @@
     <string name="connect_with_api_key_subtitle">Enter your API key to connect</string>
     <string name="api_key_hint">API Key</string>
     <string name="connect_button">Connect</string>
-    <string name="connect_to_mobilerun_title">Connect to Mobilerun</string>
-    <string name="connect_to_mobilerun_subtitle">Choose how to authenticate this device</string>
+    <string name="connect_to_carrun_title">Connect to Carrun</string>
+    <string name="connect_to_carrun_subtitle">Choose how to authenticate this device</string>
     <string name="sign_in">Sign In</string>
-    <string name="device_sign_in_title">Sign in to Mobilerun</string>
+    <string name="device_sign_in_title">Sign in to Carrun</string>
     <string name="device_sign_in_subtitle">Scan the QR code with another device, or open the address below and enter the code.</string>
     <string name="device_sign_in_qr_description">Sign-in QR code</string>
     <string name="device_sign_in_requesting">Getting a sign-in code…</string>
     <string name="device_sign_in_waiting">Waiting for approval…</string>
     <string name="device_sign_in_expired">This code expired.</string>
     <string name="device_sign_in_denied">Sign-in was denied.</string>
-    <string name="device_sign_in_offline">Can’t reach Mobilerun. Check the connection.</string>
+    <string name="device_sign_in_offline">Can’t reach Carrun. Check the connection.</string>
     <string name="device_sign_in_failed">Sign-in failed (%1$s).</string>
     <string name="device_sign_in_open_here">Open on This Phone</string>
     <string name="device_sign_in_new_code">New Code</string>
-    <string name="device_sign_in_done">Signed in to Mobilerun</string>
+    <string name="device_sign_in_done">Signed in to Carrun</string>
     <string name="could_not_open_browser">Could not open browser</string>
-    <string name="signed_in_with_mobilerun">Signed in with Mobilerun. Enter a key to replace it.</string>
+    <string name="signed_in_with_carrun">Signed in with Carrun. Enter a key to replace it.</string>
     <string name="sign_out">Sign Out</string>
     <string name="use_api_key">Use API Key</string>
     <string name="custom_connection">Custom Connection</string>
     <string name="reconnect">Reconnect</string>
     <string name="saved_connection_title">Disconnected</string>
     <string name="saved_connection_subtitle">This device is still signed in</string>
-    <string name="error_unauthorized_actionable">Mobilerun rejected the saved sign-in. Sign in again or use an API key.</string>
+    <string name="error_unauthorized_actionable">Carrun rejected the saved sign-in. Sign in again or use an API key.</string>
     <string name="sign_out_confirmation_title">Sign out on this device?</string>
-    <string name="sign_out_confirmation_message">This removes the Mobilerun sign-in from this device.</string>
+    <string name="sign_out_confirmation_message">This removes the Carrun sign-in from this device.</string>
 
     <!-- Connection States -->
     <string name="connection_failed_title">Connection Failed</string>
     <string name="error_unauthorized">Unauthorized \u2014 check your API key</string>
     <string name="error_limit_exceeded">Your plan or available device slots don’t allow this device to connect. Update the plan or free a slot, then retry.</string>
-    <string name="error_bad_request_actionable">Saved Mobilerun credentials may belong to a different account. Sign in again or update the connection.</string>
+    <string name="error_bad_request_actionable">Saved Carrun credentials may belong to a different account. Sign in again or update the connection.</string>
     <string name="error_bad_request">Bad request \u2014 check token and headers</string>
     <string name="error_unknown">An unknown error occurred</string>
     <string name="connecting_subtitle">Establishing connection\u2026</string>
@@ -301,18 +301,18 @@
     <string name="retry">Retry</string>
     <string name="dismiss">Dismiss</string>
     <string name="task_prompt_retry_models">Retry models</string>
-    <string name="task_prompt_status_models_unavailable">Couldn’t load models from Mobilerun. Try again.</string>
-    <string name="task_prompt_status_network_error">Could not reach Mobilerun. Check the connection and try again.</string>
-    <string name="task_prompt_status_unauthorized">Mobilerun rejected the saved API key. Sign in again or update the key.</string>
-    <string name="task_prompt_status_device_not_found">This connected device was not found in Mobilerun. Reconnect it and try again.</string>
-    <string name="task_prompt_status_request_rejected">Mobilerun rejected the task request. Check the selected model and settings.</string>
-    <string name="task_prompt_status_server_error">Mobilerun could not start the task right now. Try again in a moment.</string>
-    <string name="task_prompt_status_unexpected_response">Mobilerun returned an unexpected response.</string>
+    <string name="task_prompt_status_models_unavailable">Couldn’t load models from Carrun. Try again.</string>
+    <string name="task_prompt_status_network_error">Could not reach Carrun. Check the connection and try again.</string>
+    <string name="task_prompt_status_unauthorized">Carrun rejected the saved API key. Sign in again or update the key.</string>
+    <string name="task_prompt_status_device_not_found">This connected device was not found in Carrun. Reconnect it and try again.</string>
+    <string name="task_prompt_status_request_rejected">Carrun rejected the task request. Check the selected model and settings.</string>
+    <string name="task_prompt_status_server_error">Carrun could not start the task right now. Try again in a moment.</string>
+    <string name="task_prompt_status_unexpected_response">Carrun returned an unexpected response.</string>
 
     <!-- Keyboard Warning -->
-    <string name="keyboard_enabled_message">Mobilerun Keyboard active.</string>
-    <string name="keyboard_not_enabled_warning">Mobilerun Keyboard not active. Using accessibility fallback for text input.</string>
-    <string name="keyboard_enable_settings_help">Enable Mobilerun Keyboard, then select it as your keyboard.</string>
+    <string name="keyboard_enabled_message">Carrun Keyboard active.</string>
+    <string name="keyboard_not_enabled_warning">Carrun Keyboard not active. Using accessibility fallback for text input.</string>
+    <string name="keyboard_enable_settings_help">Enable Carrun Keyboard, then select it as your keyboard.</string>
     <string name="keyboard_switch_settings_help">Enable another keyboard, then switch to it.</string>
     <string name="keyboard_switch_unavailable">Could not open keyboard switching options.</string>
     <string name="select_keyboard">Select</string>
@@ -327,8 +327,8 @@
     <string name="update_downloading">Downloading…</string>
     <string name="update_downloading_percent">Downloading %1$d%%</string>
     <string name="update_requires_reinstall">Reinstall required</string>
-    <string name="update_signature_mismatch_message">This update uses a different signing key and cannot install over the current app.\n\nThe new APK has been saved to your Downloads folder. Open app settings, uninstall Mobilerun Portal, then install MobilerunPortal-update.apk from Downloads.</string>
-    <string name="update_signature_mismatch_save_failed_message">This update uses a different signing key and cannot install over the current app.\n\nPortal could not save the new APK to Downloads. Download the update APK first, then uninstall Mobilerun Portal and install the downloaded APK.</string>
+    <string name="update_signature_mismatch_message">This update uses a different signing key and cannot install over the current app.\n\nThe new APK has been saved to your Downloads folder. Open app settings, uninstall Carrun Portal, then install CarrunPortal-update.apk from Downloads.</string>
+    <string name="update_signature_mismatch_save_failed_message">This update uses a different signing key and cannot install over the current app.\n\nPortal could not save the new APK to Downloads. Download the update APK first, then uninstall Carrun Portal and install the downloaded APK.</string>
     <string name="update_uninstall">Go to App Settings</string>
     <string name="update_download_apk">Download APK</string>
     <string name="update_open_download_failed">Could not open the update download.</string>
@@ -337,7 +337,7 @@
     <string name="update_up_to_date">You’re up to date (v%1$s)</string>
     <string name="update_check_failed">Update check failed: %1$s</string>
     <string name="update_install_permission_title">Install permission required</string>
-    <string name="update_install_permission_message">Mobilerun Portal needs permission to install APK updates. Enable “Allow from this source,” then return and try again.</string>
+    <string name="update_install_permission_message">Carrun Portal needs permission to install APK updates. Enable “Allow from this source,” then return and try again.</string>
     <string name="update_open_install_settings">Open install settings</string>
 
     <!-- File Access Warning -->
@@ -356,8 +356,8 @@
     <string name="credits_no_reset_scheduled">No reset scheduled</string>
     <string name="credits_loading">Loading credits…</string>
     <string name="credits_refreshing">Refreshing credits…</string>
-    <string name="credits_sign_in_required">Sign in with Mobilerun or add a valid API key to view credits.</string>
-    <string name="credits_unsupported_host">Credits balance is only available for official Mobilerun cloud connections.</string>
+    <string name="credits_sign_in_required">Sign in with Carrun or add a valid API key to view credits.</string>
+    <string name="credits_unsupported_host">Credits balance is only available for official Carrun cloud connections.</string>
 
     <!-- Dashboard -->
     <string name="tasks_tab_dashboard">Dashboard</string>

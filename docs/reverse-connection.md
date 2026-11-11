@@ -1,6 +1,6 @@
 # Reverse Connection (Cloud Mode)
 
-Mobilerun Portal can initiate an outbound WebSocket connection to a host (used by Mobilerun Cloud). This keeps the device reachable even when it is behind NAT or on mobile networks.
+Carrun Portal can initiate an outbound WebSocket connection to a host (used by Carrun Cloud). This keeps the device reachable even when it is behind NAT or on mobile networks.
 
 ## Enable in the app
 
@@ -19,16 +19,16 @@ Saved credentials survive a reboot or app update. The connection comes back only
 
 ## Alternative method (Simplest)
 
-Tap **Sign In** on the Portal main page. Scan the QR code with another device, or tap **Open on This Phone**, and approve the device on Mobilerun. Portal connects once the code is approved.
+Tap **Sign In** on the Portal main page. Scan the QR code with another device, or tap **Open on This Phone**, and approve the device on Carrun. Portal connects once the code is approved.
 
-The sign-in is a Mobilerun session for this device. Portal refreshes it while connected; **Sign Out** revokes it. When the session ends, Portal asks to sign in again at its next reconnect.
+The sign-in is a Carrun session for this device. Portal refreshes it while connected; **Sign Out** revokes it. When the session ends, Portal asks to sign in again at its next reconnect.
 
 ---
 
-Mobilerun default host URL:
+Carrun default host URL:
 
 ```
-wss://api.mobilerun.ai/v1/providers/personal/join
+wss://api.carrun.ai/v1/providers/personal/join
 ```
 
 The `{deviceId}` placeholder is replaced automatically if present.
@@ -67,7 +67,7 @@ contract.
 These read methods work without the accessibility service:
 
 - `timezone/get` returns `{timezone}` (IANA id).
-- `location/get` returns `{latitude, longitude}`. It needs **Share location with Mobilerun cloud** on in Portal Settings and location allowed all the time; otherwise it returns an error.
+- `location/get` returns `{latitude, longitude}`. It needs **Share location with Carrun cloud** on in Portal Settings and location allowed all the time; otherwise it returns an error.
 
 ## Trigger Management
 
@@ -245,14 +245,14 @@ honored exactly.
 - **Auto-accept Screen Share** in Settings can click the MediaProjection dialog and Portal's own Record audio prompt automatically: **While using the app** on Android 11+, **Allow** on Android 10.
 - `stream/start` may return `prompting_user` or `waiting_for_user_notification_tap` while waiting for permission.
 - If the offer has an audio m-line (`recvonly` or `sendrecv`), the Portal answers it with the phone's media audio (Opus, `sendonly`) on Android 10+ when the **Device Audio** switch in Settings is on (the default); otherwise, and for offers without audio, the stream is video-only. Audio stays silent until Record audio is granted, then starts within about 2 seconds without a reconnect.
-- With **Device Audio** on and Record audio not granted, Portal asks for it once, right after the screen-share consent of the first stream that needs one. Headless: `adb shell pm grant com.mobilerun.portal android.permission.RECORD_AUDIO`; turn it off with `adb shell content insert --uri content://com.mobilerun.portal/device_audio --bind enabled:b:false`; `content query` on the same URI returns `enabled`, `permissionGranted` and `supported`.
+- With **Device Audio** on and Record audio not granted, Portal asks for it once, right after the screen-share consent of the first stream that needs one. Headless: `adb shell pm grant com.carrun.portal android.permission.RECORD_AUDIO`; turn it off with `adb shell content insert --uri content://com.carrun.portal/device_audio --bind enabled:b:false`; `content query` on the same URI returns `enabled`, `permissionGranted` and `supported`.
 - Media and game audio is streamed. Calls, notifications, ringtones, alarms, system sounds and apps that block capture stay silent.
 
 ## Configure via ContentProvider (optional)
 
 ```bash
-adb shell content insert --uri content://com.mobilerun.portal/configure_reverse_connection --bind url_base64:s:"d3NzOi8vYXBpLm1vYmlsZXJ1bi5haS92MS9wcm92aWRlcnMvcGVyc29uYWwvam9pbg==" --bind token_base64:s:"WU9VUl9UT0tFTg==" --bind enabled:b:true
-adb shell content insert --uri content://com.mobilerun.portal/cloud/reconnect_after_restart --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/configure_reverse_connection --bind url_base64:s:"d3NzOi8vYXBpLm1vYmlsZXJ1bi5haS92MS9wcm92aWRlcnMvcGVyc29uYWwvam9pbg==" --bind token_base64:s:"WU9VUl9UT0tFTg==" --bind enabled:b:true
+adb shell content insert --uri content://com.carrun.portal/cloud/reconnect_after_restart --bind enabled:b:true
 ```
 
 The `check_event_streams.py` smoke script uses the same base64-backed provider fields under

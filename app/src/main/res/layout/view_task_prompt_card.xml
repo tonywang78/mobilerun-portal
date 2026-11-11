@@ -228,7 +228,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/task_prompt_submit"
                 android:textAllCaps="false"
-                android:textColor="@color/mobilerun_primary_foreground"
+                android:textColor="@color/carrun_primary_foreground"
                 app:backgroundTint="@color/task_prompt_accent"
                 app:cornerRadius="12dp" />
 
@@ -240,7 +240,7 @@
                 android:layout_marginEnd="18dp"
                 android:indeterminate="true"
                 android:visibility="gone"
-                app:indicatorColor="@color/mobilerun_primary_foreground"
+                app:indicatorColor="@color/carrun_primary_foreground"
                 app:indicatorSize="18dp"
                 app:trackColor="@color/task_prompt_chip_success_bg"
                 app:trackThickness="2dp" />

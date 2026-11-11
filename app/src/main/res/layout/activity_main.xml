@@ -228,7 +228,7 @@
                             android:layout_marginEnd="12dp"
                             android:importantForAccessibility="no"
                             android:src="@drawable/info"
-                            app:tint="@color/mobilerun_warning" />
+                            app:tint="@color/carrun_warning" />
 
                         <TextView
                             android:id="@+id/update_banner_text_production"
@@ -284,7 +284,7 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center_vertical"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/mobilerun_logo_square" />
+                        android:src="@drawable/carrun_logo_square" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -292,7 +292,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="8dp"
-                        android:text="Mobilerun Portal"
+                        android:text="Carrun Portal"
                         android:textColor="@color/text_white"
                         android:textSize="22sp"
                         android:textStyle="bold"
@@ -335,7 +335,7 @@
                             android:layout_marginEnd="12dp"
                             android:importantForAccessibility="no"
                             android:src="@drawable/info"
-                            app:tint="@color/mobilerun_warning" />
+                            app:tint="@color/carrun_warning" />
 
                         <TextView
                             android:id="@+id/update_banner_text"
@@ -541,7 +541,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/info"
-                            app:tint="@color/mobilerun_warning"
+                            app:tint="@color/carrun_warning"
                             android:layout_marginEnd="12dp"
                             android:importantForAccessibility="no" />
 
@@ -621,7 +621,7 @@
                                         android:id="@+id/text_disconnected_title"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/connect_to_mobilerun_title"
+                                        android:text="@string/connect_to_carrun_title"
                                         android:textColor="@color/text_white"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -631,7 +631,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="2dp"
-                                        android:text="@string/connect_to_mobilerun_subtitle"
+                                        android:text="@string/connect_to_carrun_subtitle"
                                         android:textColor="@color/text_gray"
                                         android:textSize="12sp" />
 

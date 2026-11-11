@@ -1,6 +1,6 @@
 # Car GUI Agent
 
-车机 GUI Agent（`:agent` / `com.mobilerun.caragent`）与 Mobilerun Portal（`:app`）双 APK 部署。Agent 对齐 [mobilerun](https://github.com/droidrun/mobilerun) 的 `MobileAgent` 编排模型（Manager / Executor / FastAgent、SharedState、ToolRegistry、App Cards、credentials、轨迹事件），通过本机 Portal HTTP/WS 控制车机 UI。
+车机 GUI Agent（`:agent` / `com.carrun.caragent`）与 Carrun Portal（`:app`）双 APK 部署。Agent 对齐 `MobileAgent` 编排模型（Manager / Executor / FastAgent、SharedState、ToolRegistry、App Cards、credentials、轨迹事件），通过本机 Portal HTTP/WS 控制车机 UI。
 
 **执行顺序与分支图**见 [car-agent-execution.md](car-agent-execution.md)。
 
@@ -11,7 +11,7 @@
 
 ## 安装顺序
 
-1. 安装并打开 **Mobilerun Portal**
+1. 安装并打开 **Carrun Portal**
 2. 开启 Accessibility、Notification Listener、本地 HTTP（默认 `8080`）
 3. 安装 **Car GUI Agent**
 4. 在 Agent「配置」中填写 Portal URL / token，或点「从 Portal 发现 token」
@@ -19,7 +19,7 @@
 Token 也可通过：
 
 ```bash
-adb shell content query --uri content://com.mobilerun.portal/auth_token
+adb shell content query --uri content://com.carrun.portal/auth_token
 ```
 
 ## 执行模式（首页编排路径）
@@ -32,7 +32,7 @@ adb shell content query --uri content://com.mobilerun.portal/auth_token
 | 深度推理 | `ManagerAgent` → `ExecutorAgent`（先规划再执行） |
 | 决策模型 | `JevAgent` System One observe→decide→execute（不走 Manager/Executor） |
 
-决策模型对齐 [mobile-jev](https://github.com/droidrun/mobile-jev)，但**不**依赖 Mobilerun 云设备 / Node studio。配置页分区与首页执行模式对齐：
+决策模型对齐 [mobile-jev](https://github.com/droidrun/mobile-jev)，但**不**依赖 Carrun 云设备 / Node studio。配置页分区与首页执行模式对齐：
 
 - **快速 · 深度推理**：选 LLM（启发式 / OpenAI）
 - **决策模型**：选 System One（TypeSafe 云端 / 本地 Laya / 自定义）
@@ -70,9 +70,9 @@ LAYA_JEV_STRICT=1 laya-serve   # 默认 0.0.0.0:8000
 
 主界面「开发模拟 · 车况」可切换驻车 / 倒车 / 空挡 / 市区 30 / 城快 60 / 高速 100，用于验证门禁。
 
-## 与 mobilerun 概念对照
+## 与 MobileAgent 概念对照
 
-| mobilerun | Car GUI Agent |
+| MobileAgent 概念 | Car GUI Agent |
 | --- | --- |
 | `MobileAgent` | `CarAgent` |
 | Manager / Executor | `ManagerAgent` / `ExecutorAgent` |

@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Mobilerun"
+rootProject.name = "Carrun"
 include(":app")
 include(":agent")
  

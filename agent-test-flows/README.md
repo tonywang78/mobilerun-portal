@@ -1,6 +1,6 @@
 # Agent Test Flows
 
-This folder contains generic release-test runbooks for Mobilerun Portal. The files are Markdown only: they are meant to guide agents and humans through repeatable checks.
+This folder contains generic release-test runbooks for Carrun Portal. The files are Markdown only: they are meant to guide agents and humans through repeatable checks.
 
 ## Agent Entry Point
 
@@ -23,10 +23,10 @@ Prefer stable portal APIs, RPC, or content-provider checks when they cover the f
 
 | Field | Value |
 | --- | --- |
-| Package and content authority | `com.mobilerun.portal` |
-| Main activity | `com.mobilerun.portal/.ui.MainActivity` |
-| Accessibility service | `com.mobilerun.portal/.service.MobilerunAccessibilityService` |
-| Notification listener | `com.mobilerun.portal/.service.MobilerunNotificationListener` |
+| Package and content authority | `com.carrun.portal` |
+| Main activity | `com.carrun.portal/.ui.MainActivity` |
+| Accessibility service | `com.carrun.portal/.service.CarrunAccessibilityService` |
+| Notification listener | `com.carrun.portal/.service.CarrunNotificationListener` |
 
 ## Runtime Variables
 
@@ -41,9 +41,9 @@ Fill these at test time. Do not hardcode local paths, emulator serials, Android 
 | `<android-user-id>` | Current Android user from `am get-current-user` |
 | `<api-level>` | Android API level from `getprop ro.build.version.sdk` |
 | `<artifact-dir>` | Per-run directory for logs, screenshots, states, and summaries |
-| `<mobilerun-cli>` | Local Mobilerun CLI command, if available |
+| `<carrun-cli>` | Local Carrun CLI command, if available |
 | `<openai-api-key-env>` | Environment variable name containing an OpenAI key |
-| `<mobilerun-api-key-env>` | Environment variable name containing a Mobilerun Cloud key |
+| `<carrun-api-key-env>` | Environment variable name containing a Carrun Cloud key |
 
 ## Safety Rules
 
@@ -56,8 +56,8 @@ Fill these at test time. Do not hardcode local paths, emulator serials, Android 
 
 - A baseline APK is not required for normal release checks.
 - Run `baseline-release-comparison.md` only when a baseline APK is supplied or a regression comparison is requested.
-- Run Mobilerun natural-language checks only when an OpenAI key or configured auth is available.
-- Run cloud task checks only when a Mobilerun Cloud key is available.
+- Run Carrun natural-language checks only when an OpenAI key or configured auth is available.
+- Run cloud task checks only when a Carrun Cloud key is available.
 
 ## Manual Confirmation Points
 
