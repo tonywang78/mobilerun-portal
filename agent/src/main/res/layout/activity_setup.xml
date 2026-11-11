@@ -267,11 +267,19 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/car_surface"
                 android:hint="@string/typesafe_api_key_hint"
-                android:inputType="textPassword"
+                android:inputType="textVisiblePassword"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:textColor="@color/car_text"
                 android:textColorHint="@color/car_muted" />
+
+            <TextView
+                android:id="@+id/typeSafeApiKeyStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/car_muted"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/typeSafeModel"

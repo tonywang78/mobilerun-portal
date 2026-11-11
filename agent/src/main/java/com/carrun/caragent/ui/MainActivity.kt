@@ -94,11 +94,45 @@ class MainActivity : AppCompatActivity() {
             taskQueue.clear()
             appendLog("stop requested")
         }
+
+        applyLaunchIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        applyLaunchIntent(intent)
     }
 
     override fun onResume() {
         super.onResume()
         refreshVehicleLabel()
+    }
+
+    /** adb: am start -n …/.ui.MainActivity --es goal "…" --ez autorun true [--es run_path JEV] */
+    private fun applyLaunchIntent(intent: Intent?) {
+        if (intent == null) return
+        val runPathExtra = intent.getStringExtra(EXTRA_RUN_PATH)
+        if (!runPathExtra.isNullOrBlank()) {
+            when (AgentRunPath.fromStorage(runPathExtra)) {
+                AgentRunPath.FAST -> binding.modeFast.isChecked = true
+                AgentRunPath.REASONING -> binding.modeReasoning.isChecked = true
+                AgentRunPath.JEV -> binding.modeJev.isChecked = true
+                null -> Unit
+            }
+            (application as CarAgentApplication).preferences.runPath = currentRunPath()
+        }
+        val goal = intent.getStringExtra(EXTRA_GOAL)?.trim().orEmpty()
+        if (goal.isNotBlank()) {
+            binding.goalInput.setText(goal)
+            appendLog("intent goal: $goal")
+        }
+        if (intent.getBooleanExtra(EXTRA_AUTORUN, false) && goal.isNotBlank()) {
+            binding.root.post { startGoal() }
+        }
+        intent.removeExtra(EXTRA_GOAL)
+        intent.removeExtra(EXTRA_AUTORUN)
+        intent.removeExtra(EXTRA_RUN_PATH)
     }
 
     private fun startGoal() {
@@ -115,7 +149,13 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val portal = PortalTools(prefs.portalUrl, prefs.portalToken)
+        val portalToken = resolvePortalToken(prefs)
+        if (portalToken.isNullOrBlank()) {
+            appendLog("错误：未拿到 Portal token。请确认 Portal 已安装，或到「配置」点「发现 token」")
+            if (risk == RiskLevel.HIGH) taskQueue.finishHighRisk()
+            return
+        }
+        val portal = PortalTools(prefs.portalUrl, portalToken)
         val monitor = VehicleStateMonitor(
             this,
             useMock = { prefs.mockVehicle },
@@ -176,6 +216,24 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun resolvePortalToken(prefs: com.carrun.caragent.config.AgentPreferences): String? {
+        val unwrapped = PortalTools.unwrapAuthTokenColumn(prefs.portalToken)
+        if (!unwrapped.isNullOrBlank()) {
+            if (unwrapped != prefs.portalToken) {
+                prefs.portalToken = unwrapped
+                appendLog("已规范化 Portal token")
+            }
+            return unwrapped
+        }
+        val discovered = PortalTools(prefs.portalUrl, "").discoverAuthTokenViaContent(this)
+        if (!discovered.isNullOrBlank()) {
+            prefs.portalToken = discovered
+            appendLog("已从 Portal 自动发现 token")
+            return discovered
+        }
+        return null
     }
 
     private fun currentRunPath(): AgentRunPath = when {
@@ -244,5 +302,11 @@ class MainActivity : AppCompatActivity() {
         carAgent?.events?.unsubscribe(eventListener)
         carAgent?.dispose()
         super.onDestroy()
+    }
+
+    companion object {
+        const val EXTRA_GOAL = "goal"
+        const val EXTRA_AUTORUN = "autorun"
+        const val EXTRA_RUN_PATH = "run_path"
     }
 }

@@ -35,6 +35,10 @@ class SetupActivity : AppCompatActivity() {
         binding.typeSafeApiKey.setText(prefs.typeSafeApiKey)
         binding.typeSafeModel.setText(prefs.typeSafeModel)
         binding.jevConfidence.setText(prefs.jevConfidenceThreshold.toString())
+        binding.typeSafeApiKeyStatus.text = when {
+            prefs.typeSafeApiKey.isBlank() -> "未配置 API key"
+            else -> "已配置（${prefs.typeSafeApiKey.length} 字符，以 ${prefs.typeSafeApiKey.take(7)} 开头）"
+        }
 
         when (prefs.brainMode) {
             BrainMode.HEURISTIC -> binding.brainHeuristic.isChecked = true
@@ -64,6 +68,7 @@ class SetupActivity : AppCompatActivity() {
                 prefs.portalToken,
             )
             val token = tools.discoverAuthTokenViaContent(this)
+                ?: PortalTools.unwrapAuthTokenColumn(binding.portalToken.text?.toString())
             if (token.isNullOrBlank()) {
                 binding.setupStatus.text = "未读到 token，请确认 Portal 已安装并开启。"
             } else {

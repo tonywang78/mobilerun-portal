@@ -9,4 +9,14 @@
         <item name="android:windowBackground">@color/car_bg</item>
         <item name="android:textColorPrimary">@color/car_text</item>
     </style>
+
+    <style name="Widget.CarGuiAgent.MockChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/mock_chip_bg</item>
+        <item name="android:textColor">@color/mock_chip_text</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeColor">@color/mock_chip_stroke</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+        <item name="chipMinHeight">40dp</item>
+    </style>
 </resources>

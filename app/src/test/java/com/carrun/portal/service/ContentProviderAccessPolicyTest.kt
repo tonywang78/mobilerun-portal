@@ -22,5 +22,23 @@ class ContentProviderAccessPolicyTest {
     @Test
     fun rejectsUntrustedThirdPartyUid() {
         assertFalse(ContentProviderAccessPolicy.isUidAllowed(callingUid = 23456, appUid = 12345))
+        assertFalse(
+            ContentProviderAccessPolicy.isCallerAllowed(
+                callingUid = 23456,
+                appUid = 12345,
+                packagesForUid = arrayOf("com.example.other"),
+            ),
+        )
+    }
+
+    @Test
+    fun allowsCarrunCarAgentPackage() {
+        assertTrue(
+            ContentProviderAccessPolicy.isCallerAllowed(
+                callingUid = 23456,
+                appUid = 12345,
+                packagesForUid = arrayOf("com.carrun.caragent"),
+            ),
+        )
     }
 }

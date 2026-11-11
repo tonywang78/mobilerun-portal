@@ -132,58 +132,46 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockParked"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            android:text="@string/mock_preset_parked"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_parked" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockReverse"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mock_preset_reverse"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_reverse" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockNeutral"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mock_preset_neutral"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_neutral" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockCity"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mock_preset_city"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_city" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockUrban"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mock_preset_urban"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_urban" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mockHighway"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            style="@style/Widget.CarGuiAgent.MockChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mock_preset_highway"
-                            android:textColor="@color/car_text"
-                            app:chipBackgroundColor="@color/car_bg" />
+                            android:text="@string/mock_preset_highway" />
                     </com.google.android.material.chip.ChipGroup>
                 </HorizontalScrollView>
 

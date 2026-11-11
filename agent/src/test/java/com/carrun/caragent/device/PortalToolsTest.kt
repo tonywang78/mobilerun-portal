@@ -8,6 +8,17 @@ import org.junit.Test
 
 class PortalToolsTest {
     @Test
+    fun unwrapAuthTokenColumnParsesJsonEnvelope() {
+        assertEquals(
+            "5ea1465a-eab2-4153-92df-3752a9209dac",
+            PortalTools.unwrapAuthTokenColumn(
+                """{"status":"success","result":"5ea1465a-eab2-4153-92df-3752a9209dac"}""",
+            ),
+        )
+        assertEquals("plain-token", PortalTools.unwrapAuthTokenColumn("plain-token"))
+    }
+
+    @Test
     fun pingAndVersion() {
         val server = MockWebServer()
         server.enqueue(MockResponse().setBody("""{"status":"success","result":"pong"}"""))

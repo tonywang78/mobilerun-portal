@@ -786,8 +786,11 @@ class CarrunContentProvider : ContentProvider() {
             ?: throw SecurityException("Provider context unavailable")
         val callingUid = Binder.getCallingUid()
         val appUid = appContext.applicationInfo.uid
-        if (!ContentProviderAccessPolicy.isUidAllowed(callingUid, appUid)) {
-            Log.w(TAG, "Rejected content provider call from uid=$callingUid")
+        val packagesForUid = runCatching {
+            appContext.packageManager.getPackagesForUid(callingUid)
+        }.getOrNull()
+        if (!ContentProviderAccessPolicy.isCallerAllowed(callingUid, appUid, packagesForUid)) {
+            Log.w(TAG, "Rejected content provider call from uid=$callingUid pkgs=${packagesForUid?.joinToString()}")
             throw SecurityException("Caller uid $callingUid is not allowed")
         }
     }

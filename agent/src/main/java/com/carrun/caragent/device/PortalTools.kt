@@ -114,11 +114,12 @@ class PortalTools(
             context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
                 if (!cursor.moveToFirst()) return null
                 val idx = cursor.getColumnIndex("result")
-                if (idx >= 0) cursor.getString(idx) else {
-                    val raw = (0 until cursor.columnCount).joinToString("|") { cursor.getString(it) ?: "" }
-                    Regex("\"result\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.getOrNull(1)
-                        ?: raw.takeIf { it.isNotBlank() && !it.contains("{") }
+                val raw = if (idx >= 0) {
+                    cursor.getString(idx)
+                } else {
+                    (0 until cursor.columnCount).joinToString("|") { cursor.getString(it) ?: "" }
                 }
+                unwrapAuthTokenColumn(raw)
             }
         } catch (_: Exception) {
             null
@@ -242,6 +243,20 @@ class PortalTools(
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
+
+        /** Portal ContentProvider returns `{"status":"success","result":"<token>"}` in the result column. */
+        fun unwrapAuthTokenColumn(raw: String?): String? {
+            val value = raw?.trim().orEmpty()
+            if (value.isBlank()) return null
+            if (value.startsWith("{")) {
+                return try {
+                    JSONObject(value).optString("result").trim().takeIf { it.isNotBlank() }
+                } catch (_: Exception) {
+                    Regex("\"result\"\\s*:\\s*\"([^\"]+)\"").find(value)?.groupValues?.getOrNull(1)
+                }
+            }
+            return value
+        }
 
         fun boundsRect(bounds: String?): IntArray? {
             if (bounds.isNullOrBlank()) return null
