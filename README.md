@@ -31,6 +31,7 @@ Mobilerun Portal is an Android accessibility service that provides real-time vis
 - WebRTC screen streaming with auto-accept support
 - APK install from URLs (including split APKs) with optional auto-accept
 - Notification event streaming with per-event toggles
+- Companion **Car GUI Agent** (`:agent`) for Android Automotive / API 29+ head units — see [docs/car-gui-agent.md](docs/car-gui-agent.md) and execution flow [docs/car-agent-execution.md](docs/car-agent-execution.md)
 
 ## 🚀 Usage
 
@@ -123,7 +124,7 @@ adb shell content insert --uri content://com.mobilerun.portal/set_no_a11y_mode -
 | WebRTC streaming + signaling | No | No | No | Yes |
 | `files/*` | No | Yes on Android 11+ | Yes on Android 11+ | Yes on Android 11+ |
 
-Android 8 support is a compatibility tier. Core control, screenshots, and reverse streaming are supported on API 26+, but file operations remain Android 11+ only in the current build.
+Minimum SDK is API 29 (Android 10). Core control, screenshots, and reverse streaming are supported on API 29+; file operations remain Android 11+ only in the current build. Automotive feature flags are declared as `required=false` so phone/emulator installs still work.
 
 ### 💻 ADB Commands (ContentProvider)
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="car_bg">#0F1714</color>
+    <color name="car_surface">#1A2621</color>
+    <color name="car_accent">#3DDC97</color>
+    <color name="car_text">#E8F5EF</color>
+    <color name="car_muted">#8FA69B</color>
+    <color name="car_danger">#FF6B6B</color>
+</resources>

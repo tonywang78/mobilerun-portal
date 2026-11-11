@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/car_bg"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/back"
+                android:textColor="@color/car_muted" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setup"
+                android:textColor="@color/car_accent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 连接 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/section_connection"
+            android:textColor="@color/car_accent"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/portalUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/car_surface"
+            android:hint="@string/portal_url_hint"
+            android:inputType="textUri"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="@color/car_text"
+            android:textColorHint="@color/car_muted" />
+
+        <EditText
+            android:id="@+id/portalToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/car_surface"
+            android:hint="@string/portal_token_hint"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="@color/car_text"
+            android:textColorHint="@color/car_muted" />
+
+        <Button
+            android:id="@+id/btnDiscoverToken"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp"
+            android:text="@string/discover_token"
+            android:textColor="@color/car_accent"
+            app:strokeColor="@color/car_accent" />
+
+        <!-- 快速 · 深度推理 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/section_llm"
+            android:textColor="@color/car_accent"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/section_llm_sub"
+            android:textColor="@color/car_muted"
+            android:textSize="13sp" />
+
+        <RadioGroup
+            android:id="@+id/brainGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/brainHeuristic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/brain_heuristic"
+                android:textColor="@color/car_text" />
+
+            <RadioButton
+                android:id="@+id/brainOpenai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:minHeight="48dp"
+                android:text="@string/brain_openai"
+                android:textColor="@color/car_text" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/brainModeHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/car_muted"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/openaiFields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/openaiBaseUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/openai_base_url_hint"
+                android:inputType="textUri"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+
+            <EditText
+                android:id="@+id/openaiApiKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/openai_api_key_hint"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+
+            <EditText
+                android:id="@+id/openaiModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/openai_model_hint"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+        </LinearLayout>
+
+        <!-- 决策模型 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/section_decision"
+            android:textColor="@color/car_accent"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/section_decision_sub"
+            android:textColor="@color/car_muted"
+            android:textSize="13sp" />
+
+        <RadioGroup
+            android:id="@+id/decisionGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/decisionCloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/decision_cloud"
+                android:textColor="@color/car_text" />
+
+            <RadioButton
+                android:id="@+id/decisionLaya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:minHeight="48dp"
+                android:text="@string/decision_laya"
+                android:textColor="@color/car_text" />
+
+            <RadioButton
+                android:id="@+id/decisionCustom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:minHeight="48dp"
+                android:text="@string/decision_custom"
+                android:textColor="@color/car_text" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/decisionHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/car_muted"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/decisionFields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/typeSafeBaseUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/typesafe_base_url_hint"
+                android:inputType="textUri"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+
+            <EditText
+                android:id="@+id/typeSafeApiKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/typesafe_api_key_hint"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+
+            <EditText
+                android:id="@+id/typeSafeModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/typesafe_model_hint"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+
+            <EditText
+                android:id="@+id/jevConfidence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/car_surface"
+                android:hint="@string/jev_confidence_hint"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/car_text"
+                android:textColorHint="@color/car_muted" />
+        </LinearLayout>
+
+        <!-- 权限 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/section_permissions"
+            android:textColor="@color/car_accent"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/permission_guide"
+            android:textColor="@color/car_muted"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnRequestPermissions"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp"
+            android:text="@string/request_permissions"
+            android:textColor="@color/car_accent"
+            app:strokeColor="@color/car_accent" />
+
+        <Button
+            android:id="@+id/btnSaveAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:minHeight="52dp"
+            android:text="@string/save_all"
+            android:textColor="@color/car_bg" />
+
+        <TextView
+            android:id="@+id/setupStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/car_text"
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>

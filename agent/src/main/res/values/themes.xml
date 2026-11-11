@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CarGuiAgent" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/car_accent</item>
+        <item name="colorPrimaryVariant">@color/car_surface</item>
+        <item name="colorOnPrimary">@color/car_bg</item>
+        <item name="android:statusBarColor">@color/car_bg</item>
+        <item name="android:navigationBarColor">@color/car_bg</item>
+        <item name="android:windowBackground">@color/car_bg</item>
+        <item name="android:textColorPrimary">@color/car_text</item>
+    </style>
+</resources>

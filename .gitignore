@@ -1,19 +1,51 @@
+# IDE / OS
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.idea/
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Gradle / Android local config
+.gradle/
 local.properties
-output
-.idea
+*.keystore
+*.jks
+
+# Build & generated outputs (all modules)
+**/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+output/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Native / NDK intermediates
+obj/
+libs/**/*.so
+
+# Kotlin / Android Studio caches
+*.hprof
+.kotlin/
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+*.bak
+.cache/
+
+# Local scratch / unused local trees
 /test/
 makeportal
+
+# Python local junk (scripts / one-off)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
